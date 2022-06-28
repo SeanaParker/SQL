@@ -1,0 +1,29 @@
+--Create a vintage store database.
+
+CREATE TABLE vintage_emporium 
+(id INTEGER PRIMARY KEY, name TEXT, condition TEXT, price INTEGER, quantity INTEGER, catagory TEXT);
+
+INSERT INTO vintage_emporium VALUES (1, "1960s floral blouse", "good", 65, 5, "Tops");
+INSERT INTO vintage_emporium VALUES (2, "1940s denim long-sleeve", "some wear", 75, 1, "Tops");
+INSERT INTO vintage_emporium VALUES ( 3, "1980s white leather jacket", "excellent", 75, 2, "Jackets and Coats");
+INSERT INTO vintage_emporium VALUES (4, "1980s leopard tights", "good", 50, 3, "Pants");
+INSERT INTO vintage_emporium VALUES (5, "2000s glitter cocktail dress", "some wear", 45, 1, "Dresses");
+INSERT INTO vintage_emporium VALUES (6, "1950s Dior evening dress", "good", 200, 1, "Dresses");
+INSERT INTO vintage_emporium VALUES (7, "1990s babydoll dress", "good", 85, 3, "Dresses");
+INSERT INTO vintage_emporium VALUES (8, "1960s go-go boots", "some wear", 200, 1, "Shoes");
+INSERT INTO vintage_emporium VALUES (9, "1970s peterpan collar jacket", "excellent", 50, 2, "Jackets and Coats");
+INSERT INTO vintage_emporium VALUES (10, "1940s work boots", "some wear", 175, 2, "Shoes");
+INSERT INTO vintage_emporium VALUES (11, "1930s hair pin set", "good", 65, 3, "Accessories");
+INSERT INTO vintage_emporium VALUES (12, "2000s hair crimping tool", "good", 40, 4, "Appliances");
+INSERT INTO vintage_emporium VALUES (13, "1980s jacket patches", "excellent", 35, 10, "Accessories");
+INSERT INTO vintage_emporium VALUES (14, "1960s mod skirt", "good", 175, 1, "Skirts");
+INSERT INTO vintage_emporium VALUES (15, "1970s fringe coat", "excellent", 225, 1, "Jackets and Coats");
+
+--Display items ordered from highest to lowest in price.
+SELECT * FROM vintage_emporium ORDER BY price DESC;
+
+--What is the maximum amount of one type of item priced above fifty dollars?
+SELECT name, price, MAX(quantity) FROM vintage_emporium WHERE price > 50;
+
+--How many items retail in excellent condition and what are their current prices?
+SELECT name, condition, price FROM vintage_emporium ORDER BY condition LIMIT 5;
