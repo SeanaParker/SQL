@@ -22,8 +22,8 @@ INSERT INTO vintage_emporium VALUES (15, "1970s fringe coat", "excellent", 225, 
 --Display items ordered from highest to lowest in price.
 SELECT * FROM vintage_emporium ORDER BY price DESC;
 
---What is the maximum amount of one type of item priced above fifty dollars?
+--What is the maximum quantity of one type of item in stock, and is priced above fifty dollars?
 SELECT name, price, MAX(quantity) FROM vintage_emporium WHERE price > 50;
 
---How many items retail in excellent condition and what are their current prices?
+--List the top five retail items in excellent condition and their current prices.
 SELECT name, condition, price FROM vintage_emporium ORDER BY condition LIMIT 5;
