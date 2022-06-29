@@ -8,7 +8,7 @@ INSERT INTO vintage_emporium VALUES (2, "1940s denim long-sleeve", "some wear", 
 INSERT INTO vintage_emporium VALUES ( 3, "1980s white leather jacket", "excellent", 75, 2, "Jackets and Coats");
 INSERT INTO vintage_emporium VALUES (4, "1980s leopard tights", "good", 50, 3, "Pants");
 INSERT INTO vintage_emporium VALUES (5, "2000s glitter cocktail dress", "some wear", 45, 1, "Dresses");
-INSERT INTO vintage_emporium VALUES (6, "1950s Dior evening dress", "good", 200, 1, "Dresses");
+INSERT INTO vintage_emporium VALUES (6, "1950s Dior evening dress", "excellent", 200, 1, "Dresses");
 INSERT INTO vintage_emporium VALUES (7, "1990s babydoll dress", "good", 85, 3, "Dresses");
 INSERT INTO vintage_emporium VALUES (8, "1960s go-go boots", "some wear", 200, 1, "Shoes");
 INSERT INTO vintage_emporium VALUES (9, "1970s peterpan collar jacket", "excellent", 50, 2, "Jackets and Coats");
