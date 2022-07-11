@@ -20,8 +20,33 @@ INSERT INTO top_songs (title, artist, artist_id, release_year) VALUES ("What’s
 INSERT INTO top_songs (title, artist, release_year) VALUES ("God only knows", "The Beach Boys", 1966);
 INSERT INTO top_songs (title, artist, artist_id, release_year) VALUES ("Billie Jean", "Michael Jackson", 7, 1982);
 
-/* Now I'm looking to compare how many of my favorite US artists made the top hits by joining both tables */
+CREATE TABLE southern_states (id INTEGER PRIMARY KEY AUTOINCREMENT, state_name TEXT, postal_id TEXT);
+INSERT INTO southern_states (state_name, postal_id) VALUES ("Alabama", "AL");
+INSERT INTO southern_states (state_name, postal_id) VALUES ("Arkansas", "AR");
+INSERT INTO southern_states (state_name, postal_id) VALUES ("Delaware", "DE");
+INSERT INTO southern_states (state_name, postal_id) VALUES ("Florida", "FL");
+INSERT INTO southern_states (state_name, postal_id) VALUES ("Georgia", "GA");
+INSERT INTO southern_states (state_name, postal_id) VALUES ("Maryland", "MD");
+INSERT INTO southern_states (state_name, postal_id) VALUES ("North Carolina", "NC");
+INSERT INTO southern_states (state_name, postal_id) VALUES ("South Carolina", "SC");
+INSERT INTO southern_states (state_name, postal_id) VALUES ("Virginia", "VA");
+INSERT INTO southern_states (state_name, postal_id) VALUES ("West Virginia", "WV");
+INSERT INTO southern_states (state_name, postal_id) VALUES ("Kentucky", "KY");
+INSERT INTO southern_states (state_name, postal_id) VALUES ("Mississippi", "MS");
+INSERT INTO southern_states (state_name, postal_id) VALUES ("Tennesse", "TN");
+INSERT INTO southern_states (state_name, postal_id) VALUES ("Louisiana", "LA");
+INSERT INTO southern_states (state_name, postal_id) VALUES ("Oklahoma", "OK");
+INSERT INTO southern_states (state_name, postal_id) VALUES ("Texas", "TX");
+
+/* Now I'd like to compare how many of my favorite US artists made the top hits by joining both tables */
 SELECT fs.name as fav_artist, t.title as top_songs
 FROM favorite_US_singers fs
-LEFT OUTER JOIN top_songs t
+JOIN top_songs t
 ON t.artist_id = fs.id;
+
+/* Finally, I'd like to use the left outer join function to see how many of my favorite artists are from southern states */
+SELECT fs.name, fs.home_state, ss.postal_id as southern_state
+FROM favorite_US_singers fs
+LEFT OUTER JOIN southern_states ss
+ON fs.home_state = ss.postal_id
+ORDER BY ss.postal_id DESC;
