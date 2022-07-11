@@ -1,0 +1,27 @@
+/* First I created a table of my favorite US singers */
+CREATE TABLE favorite_US_singers (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, home_state TEXT, birth_year INTEGER);
+INSERT INTO favorite_US_singers (name, home_state, birth_year) VALUES ("Dolly Parton", "TN", 1946);
+INSERT INTO favorite_US_singers (name, home_state, birth_year) VALUES ("James Brown", "SC", 1933);
+INSERT INTO favorite_US_singers (name, home_state, birth_year) VALUES ("Aretha Franklin", "TN", 1942);
+INSERT INTO favorite_US_singers (name, home_state, birth_year) VALUES ("Elvis Presley", "MS", 1935);
+INSERT INTO favorite_US_singers (name, home_state, birth_year) VALUES ("Marvin Gaye", "D.C.", 1939);
+INSERT INTO favorite_US_singers (name, home_state, birth_year) VALUES ("Nina Simone", "NC", 1933);
+INSERT INTO favorite_US_singers (name, home_state, birth_year) VALUES ("Michael Jackson", "ID", 1958);
+INSERT INTO favorite_US_singers (name, home_state, birth_year) VALUES ("Frank Sinatra", "NJ", 1915);
+INSERT INTO favorite_US_singers (name, home_state, birth_year) VALUES ("Tina Turner", "TN", 1939);
+INSERT INTO favorite_US_singers (name, home_state, birth_year) VALUES ("Stevie Wonder", "MI", 1950);
+
+/* Next I've created a small table of top ranked hits */
+CREATE TABLE top_songs (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, artist TEXT, artist_id INTEGER, release_year INTEGER);
+INSERT INTO top_songs (title, artist, artist_id, release_year) VALUES ("Hound Dog","Elvis Presley", 4, 1956);
+INSERT INTO top_songs (title, artist, release_year) VALUES ("London Calling", "The Clash", 1979);
+INSERT INTO top_songs (title, artist, artist_id, release_year) VALUES ("Respect", "Aretha Franklin", 3, 1967);
+INSERT INTO top_songs (title, artist, artist_id, release_year) VALUES ("What’s Going On", "Marvin Gaye", 5, 1971);
+INSERT INTO top_songs (title, artist, release_year) VALUES ("God only knows", "The Beach Boys", 1966);
+INSERT INTO top_songs (title, artist, artist_id, release_year) VALUES ("Billie Jean", "Michael Jackson", 7, 1982);
+
+/* Now I'm looking to compare how many of my favorite US artists made the top hits by joining both tables */
+SELECT fs.name as fav_artist, t.title as top_songs
+FROM favorite_US_singers fs
+LEFT OUTER JOIN top_songs t
+ON t.artist_id = fs.id;
