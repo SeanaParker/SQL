@@ -20,6 +20,7 @@ INSERT INTO top_songs (title, artist, artist_id, release_year) VALUES ("What’s
 INSERT INTO top_songs (title, artist, release_year) VALUES ("God only knows", "The Beach Boys", 1966);
 INSERT INTO top_songs (title, artist, artist_id, release_year) VALUES ("Billie Jean", "Michael Jackson", 7, 1982);
 
+/* I then also add a table of southern states in the U.S. to reference in a later join */
 CREATE TABLE southern_states (id INTEGER PRIMARY KEY AUTOINCREMENT, state_name TEXT, postal_id TEXT);
 INSERT INTO southern_states (state_name, postal_id) VALUES ("Alabama", "AL");
 INSERT INTO southern_states (state_name, postal_id) VALUES ("Arkansas", "AR");
@@ -38,7 +39,7 @@ INSERT INTO southern_states (state_name, postal_id) VALUES ("Louisiana", "LA");
 INSERT INTO southern_states (state_name, postal_id) VALUES ("Oklahoma", "OK");
 INSERT INTO southern_states (state_name, postal_id) VALUES ("Texas", "TX");
 
-/* Now I'd like to compare how many of my favorite US artists made the top hits by joining both tables */
+/* Next I compare how many of my favorite US artists made the top hits by joining both tables */
 SELECT fs.name as fav_artist, t.title as top_songs
 FROM favorite_US_singers fs
 JOIN top_songs t
