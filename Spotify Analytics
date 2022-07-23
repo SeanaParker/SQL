@@ -1,0 +1,48 @@
+
+/* First I determined the avg popularity, danceability, and energy by artist */
+
+SELECT
+artist_name
+,track_name
+,avg(popularity)
+,avg(danceability)
+,avg(energy)
+FROM BIT_DB.spotifydata
+GROUP BY artist_name;
+
+/* I then determined who the Top 10 artists are by popularity */
+
+SELECT track_name, artist_name, popularity
+FROM BIT_DB.spotifydata
+ORDER BY popularity desc
+LIMIT 10;
+
+/* Then I determined how danceable are each of the most popular songs */
+
+SELECT track_name, artist_name, popularity,
+danceability,
+CASE
+WHEN danceability >= .7 THEN 'HIGH_DANCEABILITY'
+WHEN danceability >= .4 THEN 'AVG_DANCEABILITY'
+ELSE 'LOW_DANCEABILITY'
+END AS 'danceability_status'
+FROM BIT_DB.Spotifydata
+ORDER BY popularity desc;
+
+/* Next I searched how many of the songs are in major key vs minor key */
+
+SELECT COUNT(*), 
+CASE
+WHEN mode = 1 THEN 'Major'
+ELSE 'Minor'
+END AS 'Modality_key'
+FROM BIT_DB.Spotifydata
+GROUP BY modality_key;
+
+/* Finally, I searched which keys are the most popular among the listed songs? */
+
+Select count(key), key
+FROM BIT_DB.Spotifydata
+GROUP BY key
+HAVING COUNT(key) >=6
+ORDER BY COUNT(key) desc;
