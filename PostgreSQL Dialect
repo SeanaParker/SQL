@@ -1,0 +1,44 @@
+Examples of PostgreSQL dialect using a Netflix databse that had two tables labeled netflix_titles_info and netlix_people
+
+/*The amount of movies in database*/
+SELECT COUNT(title)
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+WHERE type = 'Movie';
+
+/*Newest added work to database*/
+SELECT date_added
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+WHERE date_added > '2021' LIMIT 5;
+
+/*Alphabetic titles of movies or shows*/
+SELECT title
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+WHERE type = 'Movie' OR type = 'TV Show'
+ORDER BY title;
+
+/*Show ID for Bright Star*/
+SELECT show_id
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+WHERE title = 'Bright Star';
+
+/*Driector from Bright Star SUBQUERY */
+SELECT director
+FROM "CharlotteChaze/BreakIntoTech"."netflix_people"
+WHERE show_id = (
+  SELECT show_id
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+WHERE title = 'Bright Star'
+);
+
+/*Director from Bright Star LEFT JOIN*/
+SELECT director
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info" info
+LEFT JOIN "CharlotteChaze/BreakIntoTech"."netflix_people" people
+ON info.show_id=people.show_id
+WHERE info.title='Bright Star';
+
+/*Oldest film in database*/
+SELECT title, release_year
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+ORDER BY release_year
+LIMIT 5;
