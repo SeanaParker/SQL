@@ -1,0 +1,73 @@
+
+#In this project I am using multiple LeetCode and HackerRank problems to demonstrate my skills in querying databases using SQL 
+
+/* LeetCode Problem #595: Write an SQL query to report the name, population, and area of the big countries. Return the result table in any order. */
+
+SELECT name, population, area
+FROM World
+WHERE area >= 3000000
+OR population >= 25000000;
+
+/* LeetCode #596: Write an SQL query to report all the classes that have at least five students. Return the result table in any order */
+
+SELECT class 
+FROM courses
+GROUP BY class
+HAVING COUNT(distinct student) >4;
+
+/* LeetCode #1757: Write an SQL query to find the ids of products that are both low fat and recyclable. Return the result table in any order. */
+
+SELECT product_id
+FROM Products
+WHERE low_fats = 'Y'
+AND recyclable = ‘Y’;
+
+/* LeetCode #584: Write an SQL query to report the names of the customer that are not referred by the customer with id = 2 */
+
+SELECT name
+FROM Customer
+WHERE referee_id <> 2
+OR referee_id IS NULL;
+
+/* HackerRank ’The Report’ : Generate a report containing three columns: Name, Grade and Mark. 
+Excluding NAMES of those students who received a grade lower than 8. 
+The report must be in descending order by grade  
+If there is more than one student with the same grade (8-10) assigned to them, order those particular students by their name alphabetically. 
+Finally, if the grade is lower than 8, use "NULL" as their name and list them by their grades in descending order. 
+If there is more than one student with the same grade (1-7) assigned to them, order those particular students by their marks in ascending order. */
+
+SELECT IF(GRADE < 8, NULL, NAME), GRADE, MARKS
+FROM STUDENTS JOIN GRADES
+WHERE MARKS BETWEEN MIN_MARK AND MAX_MARK
+ORDER BY GRADE DESC, NAME;
+
+/* HackerRank ‘Top Competitors’: Julia just finished conducting a coding contest, and she needs your help assembling the leaderboard! 
+Write a query to print the respective hacker_id and name of hackers who achieved full scores for more than one challenge. 
+Order your output in descending order by the total number of challenges in which the hacker earned a full score. 
+If more than one hacker received full scores in same number of challenges, then sort them by ascending hacker_id. */
+
+SELECT h.hacker_id, h.name
+FROM submissions s
+INNER JOIN Challenges c
+ON s.challenge_id = c.challenge_id
+INNER JOIN difficulty d
+ON c.difficulty_level = d.difficulty_level
+INNER JOIN Hackers h
+ON s.hacker_id= h.Hacker_id
+WHERE s.score = d.score AND c.difficulty_level=d.difficulty_level
+GROUP BY h.hacker_id, h.name
+HAVING COUNT(s.hacker_id)>1
+ORDER BY COUNT(s.hacker_id) DESC, s.hacker_id asc;
+
+/* HackerRank ‘Olivander’s Inventory’: Harry Potter and his friends are at Ollivander's with Ron, finally replacing Charlie's old broken wand.
+Hermione decides the best way to choose is by determining the minimum number of gold galleons needed to buy each non-evil wand of high power and age. 
+Write a query to print the id, age, coins_needed, and power of the wands that Ron's interested in, sorted in order of descending power. 
+If more than one wand has same power, sort the result in order of descending age. */
+
+SELECT w.id, p.age, w.coins_needed, w.power
+FROM Wands w
+INNER JOIN Wands_Property p
+ON w.code = p.code
+WHERE p.is_evil = 0
+AND w.coins_needed = (SELECT MIN(coins_needed) FROM Wands as w1 JOIN Wands_Property as p1 on w1.code=p1.code WHERE w1.power = w.power AND p1.age = p.age)
+ORDER BY w.power DESC, p.age DESC;
