@@ -1,3 +1,6 @@
+## For this SQL project, I analyzed a dataset called "chinook," which represents a digital media store and includes tables for artists, albums, media tracks, invoices and customers.
+## Using this dataset in SQLiteStudio (3.3.3), I answered multiple questions using the following written SQL queries
+
 /* Show Customers (their full names, customer ID, and country) who are not in the US. */
 SELECT FirstName, LastName, CustomerId, Country
 FROM chinook.customers
