@@ -1,5 +1,8 @@
 # US Household Income Project (Exploratory Data Analysis)
+-- For this SQL project, I analyzed a dataset called "US Household Income," which includes tables for income data, geographic locations, and area types. 
+-- The analysis focuses on identifying trends in income across states, cities, and areas, providing insights into economic disparities and regional variations.
 
+    
 -- Display the top 10 states with the largest land area.
 SELECT
     State_Name,
