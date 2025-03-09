@@ -1,5 +1,8 @@
 # US Household Income Project (Data Cleaning)
+-- For this SQL project, I analyzed a dataset called "US Household Income," which includes tables for income data, geographic locations, and area types. 
+-- The focus was on cleaning the data, addressing duplicates, standardizing formats, and correcting errors.
 
+    
 -- Explore the datasets
 SELECT * 
 FROM US_Household_Income
